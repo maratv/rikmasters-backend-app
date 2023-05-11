@@ -1,0 +1,19 @@
+syntax = "proto3";
+package com.vakhitov;
+
+
+//option java_multiple_files = true;
+////option java_package = "proto";
+//option java_outer_classname = "GrpcServiceProto";
+
+message HelloRequest {
+  string messageRequest = 1;
+}
+
+message HelloResponse {
+  string messageResponse = 1;
+}
+
+service ExchangeService {
+  rpc hello(HelloRequest) returns (HelloResponse);
+}
