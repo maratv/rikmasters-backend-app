@@ -7,7 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -15,24 +14,17 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "car")
-public class Car {
+public class Part {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
 
-    private String vin;
+    private String serial;
 
-    private String registrationNumber;
+    private String partsType;
 
-    private String model;
-
-    private String manufacturer;
-
-    private Integer yearOfManufacture;
-
-    @OneToMany(mappedBy = "car", fetch = FetchType.LAZY)
-    private List<Part> parts;
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "car_id")
+    private Car car;
 
 }
