@@ -8,4 +8,7 @@ public interface CarService {
 
     List<Car> getCarsList();
 
+    Car addNewCar(String vin, String registrationNumber);
+
 }
+

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package com.vakhitov;
+
+message CarRequest {
+  string vin = 1;
+}
+
+message CarResponse {
+  string registrationNumber = 1;
+}
+
+service CarGrpcService {
+  rpc GetCar(CarRequest) returns (CarResponse) {}
+}

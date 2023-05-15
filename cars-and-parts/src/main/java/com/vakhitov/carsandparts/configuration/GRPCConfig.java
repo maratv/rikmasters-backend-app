@@ -1,24 +1,24 @@
 package com.vakhitov.carsandparts.configuration;
 
-import com.vakhitov.ExchangeServiceGrpc;
+import com.vakhitov.carsandparts.service.CarGRPCServiceImpl;
 import io.grpc.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+import java.io.IOException;
+
+//@Configuration
 public class GRPCConfig {
 
-    @Bean
-    public Channel channel() {
-        return ManagedChannelBuilder
-                .forAddress("127.0.0.1", 9090)
-                .usePlaintext()
+ //   @Bean
+    public void server() throws IOException, InterruptedException {
+        Server server = ServerBuilder
+                .forPort(9090)
+                .addService(new CarGRPCServiceImpl())
                 .build();
-    }
 
+        server.start();
+        server.awaitTermination();
 
-    @Bean
-    public ExchangeServiceGrpc.ExchangeServiceBlockingStub stub() {
-        return ExchangeServiceGrpc.newBlockingStub(channel());
     }
 }

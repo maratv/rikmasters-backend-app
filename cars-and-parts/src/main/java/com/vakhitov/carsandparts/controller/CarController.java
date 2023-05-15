@@ -1,50 +1,38 @@
 package com.vakhitov.carsandparts.controller;
 
 import com.vakhitov.carsandparts.model.Car;
-import com.vakhitov.carsandparts.service.CAPGrpcClientService;
+import com.vakhitov.carsandparts.service.CarGRPCServiceImpl;
 import com.vakhitov.carsandparts.service.CarService;
-import com.vakhitov.carsandparts.service.FoobarService;
+//import com.vakhitov.service.CarGRPCServiceImpl;
+import io.grpc.Server;
+import io.grpc.ServerBuilder;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
+@RequestMapping("/cars")
 public class CarController {
 
     private final CarService carService;
-    private final CAPGrpcClientService capGrpcClientService;
-    private final FoobarService foobarService;
 
+    @Operation(summary= "Get cars list", description = "Get cars list")
     @GetMapping("/list")
     public List<Car> getCarsList() {
         return carService.getCarsList();
     }
 
-    @GetMapping("/test")
-    public String test() {
-        return "testik";
-    }
-
-    @GetMapping("/test2")
-    public void test2() {
-
-        capGrpcClientService.sendMessage();
-    }
-
-
-    @GetMapping("/test3")
-    public void test3() {
-
-        foobarService.receiveHello("helllllo");
-    }
-
-
-    @GetMapping("/")
-    public String home() {
-        return "home page";
+    @Operation(summary= "Add new car", description = "Add new car")
+    @PostMapping
+    public ResponseEntity<Car> addCar(String vin, String registrationNumber) {
+        Car car = carService.addNewCar(vin, registrationNumber);
+        return ResponseEntity.status(HttpStatus.CREATED).body(car);
     }
 }
 

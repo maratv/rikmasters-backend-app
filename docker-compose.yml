@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  db_cap:
+    image: arm64v8/postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: cap
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+
+  db_daa:
+    image: arm64v8/postgres
+    restart: always
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_DB: daa
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres

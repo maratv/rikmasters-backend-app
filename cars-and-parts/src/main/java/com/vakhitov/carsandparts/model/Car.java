@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Data
@@ -19,7 +18,7 @@ import java.util.UUID;
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID id;
+    private Long id;
 
     private String vin;
 
@@ -33,6 +32,8 @@ public class Car {
 
     @OneToMany(mappedBy = "car", fetch = FetchType.LAZY)
     private List<Part> parts;
+
+    private String ownersPassport;
 
 
 }

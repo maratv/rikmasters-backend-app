@@ -11,8 +11,6 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Data
@@ -22,18 +20,17 @@ import java.util.UUID;
 public class Driver {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID id;
+    private Long id;
 
     private String fullName;
 
     private String passport;
 
-    private String driverLicenseCategory;
+    private Category category;
 
     private Date birthDate;
 
-    private UUID carOwnership;
+    private BigDecimal balance;
 
-    private BigDecimal greenAccountBalance;
-
+    private String carsRegistrationNumber;
 }
