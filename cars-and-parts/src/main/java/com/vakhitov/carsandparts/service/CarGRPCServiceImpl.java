@@ -5,17 +5,16 @@ import com.vakhitov.CarGrpcServiceOuterClass;
 import com.vakhitov.carsandparts.model.Car;
 import com.vakhitov.carsandparts.repository.CarsRepository;
 import io.grpc.stub.StreamObserver;
-import net.devh.boot.grpc.server.service.GrpcService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.lognet.springboot.grpc.GRpcService;
 
 import java.util.Optional;
 
-
-@GrpcService
+@RequiredArgsConstructor
+@GRpcService
 public class CarGRPCServiceImpl extends CarGrpcServiceGrpc.CarGrpcServiceImplBase {
 
-    @Autowired
-    private CarsRepository carsRepository;
+    private final CarsRepository carsRepository;
 
 
     @Override

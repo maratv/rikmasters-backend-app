@@ -1,18 +1,13 @@
 package com.vakhitov.carsandparts.controller;
 
 import com.vakhitov.carsandparts.model.Car;
-import com.vakhitov.carsandparts.service.CarGRPCServiceImpl;
 import com.vakhitov.carsandparts.service.CarService;
-//import com.vakhitov.service.CarGRPCServiceImpl;
-import io.grpc.Server;
-import io.grpc.ServerBuilder;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.List;
 
 @RequiredArgsConstructor

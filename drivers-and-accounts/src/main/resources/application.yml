@@ -21,8 +21,8 @@ eureka:
 server:
   port: 8082
 
-grpc:
-  client:
-    grpc-srv:
-      address: static://localhost:9090
-      negotiation-type: plaintext
+#grpc:
+#  client:
+#    grpc-srv:
+#      address: static://localhost:6565
+#      negotiation-type: plaintext
