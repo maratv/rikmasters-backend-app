@@ -7,6 +7,7 @@ import com.vakhitov.driversandaccounts.model.Category;
 import com.vakhitov.driversandaccounts.repository.DriverRepository;
 import lombok.RequiredArgsConstructor;
 import net.devh.boot.grpc.client.inject.GrpcClient;
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class DriverServiceImpl implements DriverService {
     public Driver saveNewDriver(String fullName, String passport, Category cat) {
         Driver driver = Driver.builder()
                 .fullName(fullName)
-                .passport(passport)
+                .passport(Base64.encodeBase64String(passport.getBytes()))
                 .category(cat)
                 .build();
 
